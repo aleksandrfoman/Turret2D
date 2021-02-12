@@ -22,15 +22,19 @@ namespace Turret2d
 
         private void Update()
         {
-            if (_currentSpawnTime <= 0f)
+            if (!GameController.GAME_OVER)
             {
-                _currentSpawnTime = _spawnTime;
-                SpawnEnemy();
+                if (_currentSpawnTime <= 0f)
+                {
+                    _currentSpawnTime = _spawnTime;
+                    SpawnEnemy();
+                }
+                else
+                {
+                    _currentSpawnTime -= Time.deltaTime;
+                }
             }
-            else
-            {
-                _currentSpawnTime -= Time.deltaTime;
-            }
+          
         }
 
         private void SpawnEnemy()

@@ -12,6 +12,8 @@ namespace Turret2d
         private float _moveSpeed;
         [SerializeField]
         private int _damage = 15;
+        [SerializeField]
+        private int _priceToScore = 25;
 
         private void Start()
         {
@@ -20,7 +22,15 @@ namespace Turret2d
 
         private void Update()
         {
-            Move();
+            if (!GameController.GAME_OVER)
+            {
+                Move();
+            }
+            else
+            {
+                DestroyEnemy();
+            }
+               
         }
 
         public void TakeDamage(int value)
@@ -34,6 +44,7 @@ namespace Turret2d
 
         private void DestroyEnemy()
         {
+            GameController.SCORE += _priceToScore;
             Destroy(gameObject);
         }
 
@@ -46,7 +57,7 @@ namespace Turret2d
             }
             else
             {
-                DestroyEnemy();
+                Debug.Log(_playerPos + "Error");
             }
         }
 

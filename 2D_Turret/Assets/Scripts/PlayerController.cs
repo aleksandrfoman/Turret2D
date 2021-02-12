@@ -56,6 +56,8 @@ namespace Turret2d
             if (_currentHealth <= 0)
             {
                 Destroy(gameObject);
+                GameController.GAME_OVER = true;
+                Debug.Log(GameController.GAME_OVER + "GAME OVER");
             }
         }
     }
