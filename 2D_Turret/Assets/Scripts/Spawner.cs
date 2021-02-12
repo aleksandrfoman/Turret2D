@@ -22,13 +22,9 @@ namespace Turret2d
 
         private void Update()
         {
-
-
             if (_currentSpawnTime <= 0f)
             {
-
                 _currentSpawnTime = _spawnTime;
-
                 SpawnEnemy();
             }
             else

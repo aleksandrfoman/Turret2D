@@ -15,7 +15,7 @@ namespace Turret2d
 
         private void Start()
         {
-            _playerPos = GameObject.FindGameObjectWithTag("Player").transform;
+          _playerPos = GameObject.FindGameObjectWithTag("Player").transform;  
         }
 
         private void Update()
@@ -28,20 +28,33 @@ namespace Turret2d
             _health -= value;
             if (_health <= 0)
             {
-                Destroy(gameObject);
+                DestroyEnemy();
             }
+        }
+
+        private void DestroyEnemy()
+        {
+            Destroy(gameObject);
         }
 
         private void Move()
         {
-            gameObject.transform.position = Vector2.MoveTowards(gameObject.transform.position, _playerPos.position, _moveSpeed * Time.deltaTime);
+            if (_playerPos != null)
+            {
+                gameObject.transform.position = Vector2.MoveTowards(gameObject.transform.position, _playerPos.position, _moveSpeed * Time.deltaTime);
+                
+            }
+            else
+            {
+                DestroyEnemy();
+            }
         }
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
             if (collision.CompareTag("Player"))
             {
-                collision.GetComponent<PlayerController>();
+                collision.GetComponent<PlayerController>().TakeDamage(_damage);
                 Destroy(gameObject);
             }
 

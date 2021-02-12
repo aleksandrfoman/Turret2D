@@ -14,15 +14,17 @@ namespace Turret2d
         [SerializeField]
         private Transform _shootPoint;
         [SerializeField]
-        private float _maxHealth;
-        private float _currentHealth;
+        private int _maxHealth;
+        private int _currentHealth;
         [SerializeField]
-        private Image _healthBar;
+        private HealthBar _healthBar;
 
 
         private void Start()
         {
             _currentHealth = _maxHealth;
+            _healthBar.SetMaxHealth(_maxHealth);
+
         }
         private void Update()
         {
@@ -45,15 +47,11 @@ namespace Turret2d
             Instantiate(_projectilePrefab, _shootPoint.position,_shootPoint.rotation);
         }
 
-        private void UpdateHealthBar()
-        {
-           // _healthBar.fillAmount = _health; 
-        }
 
         public void TakeDamage(int value)
         {
             _currentHealth -= value;
-            UpdateHealthBar();
+            _healthBar.SetHealth(_currentHealth);
 
             if (_currentHealth <= 0)
             {
