@@ -10,10 +10,6 @@ namespace Turret2d
         [SerializeField]
         private Vector3 _vectorEuler;
         [SerializeField]
-        private GameObject _projectilePrefab;
-        [SerializeField]
-        private Transform _shootPoint;
-        [SerializeField]
         private int _maxHealth;
         private int _currentHealth;
         [SerializeField]
@@ -26,6 +22,7 @@ namespace Turret2d
             _healthBar.SetMaxHealth(_maxHealth);
 
         }
+
         private void Update()
         {
             if (Input.GetKeyDown(KeyCode.A))
@@ -36,17 +33,9 @@ namespace Turret2d
             {
                 transform.Rotate(-_vectorEuler);
             }
-            if (Input.GetKeyDown(KeyCode.W))
-            {
-                Shoot();
-            }
         }
 
-        private void Shoot()
-        {
-            Instantiate(_projectilePrefab, _shootPoint.position,_shootPoint.rotation);
-        }
-
+       
 
         public void TakeDamage(int value)
         {

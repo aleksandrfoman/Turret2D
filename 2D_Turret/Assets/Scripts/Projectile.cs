@@ -35,8 +35,11 @@ namespace Turret2d
                 enemy.TakeDamage(_damage);
               
             }
+            else if (collision.CompareTag("Wall"))
+            {
+                Destroy(gameObject);
+            }
 
-            Destroy(gameObject);
         }
     }
 

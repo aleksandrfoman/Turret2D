@@ -44,7 +44,7 @@ namespace Turret2d
 
         private void DestroyEnemy()
         {
-            GameController.SCORE += _priceToScore;
+           // GameController.SCORE += _priceToScore;
             Destroy(gameObject);
         }
 
